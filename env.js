@@ -1,4 +1,4 @@
-import nanoid from 'nanoid';
+import { nanoid } from 'nanoid';
 import Mongo from './Mongo';
 import fs from 'fs';
 import { createLogger, format, transports } from 'winston';

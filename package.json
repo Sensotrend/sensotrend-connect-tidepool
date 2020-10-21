@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@awaitjs/express": "^0.6.1",
+    "axios": "^0.20.0",
     "basic-auth": "^2.0.1",
     "body-parser": "^1.19.0",
     "bson": "^4.2.0",
@@ -26,6 +27,7 @@
     "nanoid": "^3.1.12",
     "promise-parallel-throttle": "^3.3.0",
     "sensotrend-converter": "git://github.com/Sensotrend/sensotrend-converter.git#beta",
+    "uuid": "^8.3.1",
     "winston": "^3.3.3"
   }
 }
