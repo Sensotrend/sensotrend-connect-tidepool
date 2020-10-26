@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import Mongo from './Mongo';
+import Mongo from './mongo';
 import fs from 'fs';
 import { createLogger, format, transports } from 'winston';
 import DeviceLastSeenService from './lib/RecordSkipManager';
