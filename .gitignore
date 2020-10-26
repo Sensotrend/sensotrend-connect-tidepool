@@ -107,3 +107,4 @@ dist
 
 #keys
 /Keys/priva*.pem
+/Keys/priva*.key
