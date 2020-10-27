@@ -106,4 +106,4 @@ dist
 .tern-port
 
 #keys
-/Keys/priva*.pem
+/Keys/*.key
