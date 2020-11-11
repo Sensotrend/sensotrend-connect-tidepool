@@ -1,8 +1,8 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Sensotrend connect tidepool",
-  "main": "main.js",
+  "main": "esmLoader.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
