@@ -1,5 +1,5 @@
 {
-  "name": "lib",
+  "name": "sensotrend-connect-tidepool",
   "version": "1.0.10",
   "description": "Sensotrend connect tidepool",
   "main": "main.js",
