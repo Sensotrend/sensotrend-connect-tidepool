@@ -1,6 +1,6 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "Sensotrend connect tidepool",
   "main": "esmLoader.js",
   "scripts": {
