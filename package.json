@@ -1,6 +1,6 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "description": "Sensotrend connect tidepool",
   "main": "esmLoader.js",
   "scripts": {
@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "fhir-kit-client": "git://github.com/mrinnetmaki/fhir-kit-client.git#error-handling",
+    "jose": "^3.1.2",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
     "mongoose": "^5.10.9",
