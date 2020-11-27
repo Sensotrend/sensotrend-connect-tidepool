@@ -1,6 +1,6 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.0.48",
+  "version": "1.0.49",
   "description": "Sensotrend connect tidepool",
   "main": "esmLoader.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@awaitjs/express": "^0.6.1",
-    "axios": "^0.20.0",
+    "axios": "^0.21.0",
     "basic-auth": "^2.0.1",
     "body-parser": "^1.19.0",
     "bson": "^4.2.0",
