@@ -1,11 +1,11 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.0.52",
+  "version": "1.0.53",
   "description": "Sensotrend connect tidepool",
-  "main": "connectTidepool.js",
+  "main": "connectTidepool.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "testEsmloader": " env-cmd -f ./my.env node --experimental-modules connectTidepool.js"
+    "testEsmloader": " env-cmd -f ./my.env node --experimental-modules connectTidepool.mjs"
   },
   "type": "module",
   "author": "",
