@@ -1,11 +1,13 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.0.49",
+  "version": "1.0.50",
   "description": "Sensotrend connect tidepool",
-  "main": "esmLoader.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "testEsmloader": " env-cmd -f ./my.env node --experimental-modules main.js"
   },
+  "type": "module",
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -17,11 +19,10 @@
     "connect-mongo": "^3.2.0",
     "cors": "^2.8.5",
     "env-cmd": "^10.1.0",
-    "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "fhir-kit-client": "git://github.com/mrinnetmaki/fhir-kit-client.git#error-handling",
-    "jose": "^3.1.2",
+    "jose": "^3.1.3",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
     "mongoose": "^5.10.9",

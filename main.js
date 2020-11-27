@@ -1,4 +1,4 @@
 
-import TidepoolRESTPlugin from './lib/TidepoolRESTPlugin';
+import TidepoolRESTPlugin from './lib/TidepoolRESTPlugin.js';
 
 export default TidepoolRESTPlugin;
