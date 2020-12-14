@@ -1,6 +1,6 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.0.89",
+  "version": "1.0.91",
   "description": "Sensotrend connect tidepool",
   "main": "connectTidepool.mjs",
   "scripts": {
@@ -16,7 +16,6 @@
     "basic-auth": "^2.0.1",
     "body-parser": "^1.19.0",
     "bson": "^4.2.2",
-    "chai": "^4.2.0",
     "connect-mongo": "^3.2.0",
     "cors": "^2.8.5",
     "env-cmd": "^10.1.0",
@@ -34,6 +33,7 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
-    "mocha": "^8.2.1"
+    "mocha": "^8.2.1",
+    "chai": "^4.2.0"
   }
 }

@@ -1,6 +1,10 @@
-
+import chaiModule from 'chai';
 import {v4 as uuidv4} from 'uuid';
 import _FHIRClient from '../lib/FHIRClient.mjs';
+
+const {should} = chaiModule
+
+should();
 
 import envModule from '../env.mjs';
 const env = envModule();
@@ -8,16 +12,18 @@ const env = envModule();
 const URL = "http://hapi.fhir.org/baseDstu3";
 const FHIRClient = _FHIRClient(URL, {env});
 
-const UUID = uuidv4();
-const patient_identifier = "urn:uuid:" + UUID;
+
 
 describe('FHIRClient', function () {
 
    let testPatient;
+   let UUID;
+   let patient_identifier;
+
    before(function() {
       
-      const UUID = uuidv4();
-      const patient_identifier = "urn:uuid:" + UUID;
+      UUID = uuidv4();
+      patient_identifier = "urn:uuid:" + UUID;
 
       testPatient = {
          "resourceType": "Patient",
