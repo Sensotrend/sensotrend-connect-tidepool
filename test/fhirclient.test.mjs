@@ -6,7 +6,7 @@ const {should} = chaiModule
 
 should();
 
-import envModule from '../env.mjs';
+import envModule from '../envTest.mjs';
 const env = envModule();
 
 const URL = "http://hapi.fhir.org/baseDstu3";
