@@ -27,7 +27,7 @@
     "lodash": "^4.17.20",
     "nanoid": "^3.1.20",
     "promise-parallel-throttle": "^3.3.0",
-    "sensotrend-converter": "git://github.com/Sensotrend/sensotrend-converter.git#esm",
+    "sensotrend-converter": "git://github.com/Sensotrend/sensotrend-converter.git#betaWithTypeModule",
     "uuid": "^8.3.2",
     "winston": "^3.3.3"
   },
