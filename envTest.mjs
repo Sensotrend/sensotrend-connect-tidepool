@@ -1,13 +1,16 @@
 import winstonModule from 'winston';
-import Auth from '../lib/Auth';
+import { nanoid } from 'nanoid';
+import Auth from './test/lib/Auth.mjs'
 import Mongo from './mongo.mjs';
 
+import DeviceLastSeenService from './test/lib/RecordSkipManager.mjs';
+import { DefaultConversionService } from 'sensotrend-converter';
 
 const { createLogger, format, transports } = winstonModule;
 
 const { combine, timestamp, label } = format;
 
-function makeLogger () {
+export function makeLogger () {
 
   const alignedWithColorsAndTime = format.combine(
      format.colorize(),
@@ -39,19 +42,29 @@ function Environment () {
 
   const FHIR_SERVER = process.env.FHIR_SERVER;
   if (!FHIR_SERVER) {
-     env.logger.error('FHIR_SERVER missing, cannot start');
-     process.exit();
+      envTest.logger.error('FHIR_SERVER missing, cannot start');
+      process.exit();
   }
 
+  envTest.lastSeenService = DeviceLastSeenService(envTest);
+
+  const TOKEN_ENCRYPTION_KEY = process.env.TOKEN_ENCRYPTION_KEY;
 
 
-  envTest.env.userProvider = Auth(TOKEN_ENCRYPTION_KEY, envTest.env);
+  envTest.userProvider = Auth(TOKEN_ENCRYPTION_KEY, envTest);
   envTest.FHIRServer = FHIR_SERVER;
+
   if (process.env.MONGODB_URI) {
       envTest.MONGODB_URI = process.env.MONGODB_URI;
       envTest.mongo = Mongo(envTest);
   }  
 
+  envTest.randomString = nanoid;
+  envTest.session_key = process.env.SESSION_KEY || '2466c1cc-3bed-11e9-a4de-53cf880a6d1a-2d2ea702-3bed-11e9-8842-ef5457fba264';
+
+  envTest.setOauthProvider = function (oauthProvider) {
+   envTest.oauthProvider = oauthProvider;
+  }
 
   const authCert = process.env.FIPHR_AUTH_CERT_PATH;
   const authKey = process.env.FIPHR_AUTH_KEY_PATH;
@@ -61,6 +74,8 @@ function Environment () {
      envTest.https_certificate = fs.readFileSync(authCert, 'utf8');
      envTest.logger.info('Using certificate and private key for HTTPS');
   }
+
+  envTest.dataFormatConverter = DefaultConversionService(envTest.logger);
 
   return envTest;
 }

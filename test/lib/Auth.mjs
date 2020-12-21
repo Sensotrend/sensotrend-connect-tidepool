@@ -1,7 +1,9 @@
-import User from './models/user.model.js';
-import nanoid from 'nanoid';
-import {v4 as uuidv4} from 'uuid';
 import crypto from 'crypto';
+import { nanoid } from 'nanoid';
+import {v4 as uuidv4} from 'uuid';
+
+
+import User from '../models/user.model.mjs';
 
 const algorithm = 'aes-256-ctr';
 

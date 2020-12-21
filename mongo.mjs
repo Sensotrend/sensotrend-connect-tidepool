@@ -1,8 +1,9 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-function Mongo (env) {
 
-   const logger = env.logger;
+function Mongo (envTest) {
+
+   const logger = envTest.logger;
 
    if (!process.env.MONGODB_URI) {
       logger.error('MONGODB_URI missing, application cannot start');
@@ -33,4 +34,5 @@ function Mongo (env) {
    return Mongo;
 }
 
-module.exports = Mongo;
+export default Mongo;
+

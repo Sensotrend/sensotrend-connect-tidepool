@@ -1,12 +1,12 @@
 import chaiModule from 'chai';
 import {v4 as uuidv4} from 'uuid';
 import _FHIRClient from '../lib/FHIRClient.mjs';
+import envModule from '../envTest.mjs';
 
 const {should} = chaiModule
 
 should();
 
-import envModule from '../envTest.mjs';
 const env = envModule();
 
 const URL = "http://hapi.fhir.org/baseDstu3";

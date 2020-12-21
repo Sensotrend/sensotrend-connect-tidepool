@@ -1,9 +1,13 @@
+import express from 'express';
 import chaiModule from 'chai';
 import request from 'supertest';
 import {v4 as uuidv4} from 'uuid';
 import moment from 'moment';
 import envModule from '../envTest.mjs';
 import _FHIRClient from '../lib/FHIRClient.mjs';
+
+import NSRestService from './lib/NSRESTService.mjs';
+import FIPHR  from './lib/oauthproviders/FIPHR.mjs'
 
 const {should} = chaiModule;
 
@@ -44,8 +48,22 @@ describe('NS_REST_API & FHIRClient test', function () {
  
   let UUID;
   let testPatient;
+  let server;
 
   before(function() {
+
+
+    env.setOauthProvider(FIPHR(env));
+
+      const api = express();
+
+      let nsrest = NSRestService(env);
+      api.use('/api/v1', nsrest);
+      api.use('/pebble', nsrest);
+
+      server = api.listen(1300);
+
+
      UUID = uuidv4();
 
     testPatient = {
@@ -61,6 +79,13 @@ describe('NS_REST_API & FHIRClient test', function () {
           }
         ]
         };
+    });
+
+   after(function() {
+    
+      server.close(() => {
+         console.log('Close NS_REST_API & FHIRClient test server is closed');
+      });
     });
 
    it('should create a sample patient and data to FHIR sandbox', async function () {
@@ -113,14 +138,14 @@ describe('NS_REST_API & FHIRClient test', function () {
          "noise": 1
       }];
 
-      await request(nsfi)
+      await request(server)
          .post('/api/v1/entries')
          .send(ns_sample)
          .set({ 'api-secret': u.site_secret, 'Accept': 'application/json' })
          .expect('Content-Type', /json/)
          .expect(200);
 
-      await request(nsfi)
+      await request(server)
          .get('/api/v1/entries')
          .set({ 'api-secret': u.site_secret, 'Accept': 'application/json' })
          .expect('Content-Type', /json/)
@@ -169,14 +194,14 @@ describe('NS_REST_API & FHIRClient test', function () {
          "sysTime": "2019-02-14T13:30:51.509+0200"
       }];
 
-      await request(nsfi)
+      await request(server)
          .post('/api/v1/entries')
          .send(ns_sample)
          .set({ 'api-secret': u.site_secret, 'Accept': 'application/json' })
          .expect('Content-Type', /json/)
          .expect(200);
       
-      await request(nsfi)
+      await request(server)
          .get('/api/v1/entries?count=1&find\[date\]\[\$eq\]=1550143851509')
          .set({ 'api-secret': u.site_secret, 'Accept': 'application/json' })
          .expect('Content-Type', /json/)
@@ -248,14 +273,14 @@ describe('NS_REST_API & FHIRClient test', function () {
       })
 
 
-      await request(nsfi)
+      await request(server)
          .post('/api/v1/entries')
          .send(ns_sample)
          .set({ 'api-secret': u2.site_secret, 'Accept': 'application/json' })
          .expect('Content-Type', /json/)
          .expect(200);
       
-      await request(nsfi)
+      await request(server)
          // .get('/api/v1/entries/sgv.json?count=6') // This is what the Nightscout OSX menubar app queries for
          .get('/api/v1/entries/sgv.json?count=6&find\[date\]\[\$gt\]=1584971679000')
          .set({ 'api-secret': u2.site_secret, 'Accept': 'application/json' })
@@ -264,7 +289,7 @@ describe('NS_REST_API & FHIRClient test', function () {
          .then(response => {
             console.log('response.body', response.body);
             response.body.length.should.equal(6);
-            response.body[0].date.should.be.a.Number().above(response.body[1].date);
+            response.body[0].date.should.to.not.equal(response.body[1].date);
          });
    });
 
@@ -291,14 +316,14 @@ describe('NS_REST_API & FHIRClient test', function () {
 
       console.log('ns_sample for /treatment test', ns_sample);
 
-      await request(nsfi)
+      await request(server)
          .post('/api/v1/treatments')
          .send(ns_sample)
          .set({ 'api-secret': u.site_secret, 'Accept': 'application/json' })
          .expect('Content-Type', /json/)
          .expect(200);
 
-      await request(nsfi)
+      await request(server)
          .get('/api/v1/treatments')
          .set({ 'api-secret': u.site_secret, 'Accept': 'application/json' })
          .expect('Content-Type', /json/)
@@ -330,14 +355,14 @@ describe('NS_REST_API & FHIRClient test', function () {
          "created_at": "2019-04-01T11:21:29+03:00"
       }];
 
-      await request(nsfi)
+      await request(server)
          .post('/api/v1/treatments')
          .send(ns_sample)
          .set({ 'api-secret': u.site_secret, 'Accept': 'application/json' })
          .expect('Content-Type', /json/)
          .expect(200);
 
-      await request(nsfi)
+      await request(server)
          .get('/api/v1/treatments?count=10\&find\[created_at\]\[\$gt\]=2019-01-01T11%3A30%3A17.694Z&find\[created_at\]\[\$lt\]=2019-05-01T11%3A30%3A17.694Z')
          .set({ 'api-secret': u.site_secret, 'Accept': 'application/json' })
          .expect('Content-Type', /json/)
@@ -348,7 +373,7 @@ describe('NS_REST_API & FHIRClient test', function () {
             response.body[0].device.should.equal("MDT-554");
          });
 
-      await request(nsfi)
+      await request(server)
          .get('/api/v1/treatments?count=10\&find\[created_at\]\[\$lt\]=2019-01-01T11%3A30%3A17.694Z')
          .set({ 'api-secret': u.site_secret, 'Accept': 'application/json' })
          .expect('Content-Type', /json/)
@@ -363,7 +388,7 @@ describe('NS_REST_API & FHIRClient test', function () {
 
       const u = await Auth.createUser(patient.id, siteid, pw, d2);
 
-      await request(nsfi)
+      await request(server)
          .get('/api/v1/verifyauth')
          .expect('Content-Type', /json/)
          .expect(200)
@@ -371,7 +396,7 @@ describe('NS_REST_API & FHIRClient test', function () {
             response.body.message.should.equal("UNAUTHORIZED");
          });
 
-      await request(nsfi)
+      await request(server)
          .get('/api/v1/verifyauth')
          .set({ 'api-secret': u.site_secret, 'Accept': 'application/json' })
          .expect('Content-Type', /json/)
@@ -385,7 +410,7 @@ describe('NS_REST_API & FHIRClient test', function () {
 
       const u = await Auth.createUser(patient.id, siteid, pw, d2);
 
-      await request(nsfi)
+      await request(server)
          .post('/api/v1/devicestatus')
          .send({ device: "testDevice", status: 1 })
          .set({ 'api-secret': u.site_secret, 'Accept': 'application/json' })
@@ -397,7 +422,7 @@ describe('NS_REST_API & FHIRClient test', function () {
 
       const u = await Auth.createUser(patient.id, siteid, pw, d2);
 
-      await request(nsfi)
+      await request(server)
          .get('/api/v1/status')
          .set({ 'api-secret': u.site_secret, 'Accept': 'application/json' })
          .expect('Content-Type', /json/)
@@ -409,10 +434,12 @@ describe('NS_REST_API & FHIRClient test', function () {
 
       const u = await Auth.createUser(patient.id, siteid, pw, d2);
 
-      await request(nsfi)
+      await request(server)
          .get('/api/v1/pebble')
          .set({ 'api-secret': u.site_secret, 'Accept': 'application/json' })
          .expect('Content-Type', /json/)
          .expect(200);
    });
+
+ 
 });
