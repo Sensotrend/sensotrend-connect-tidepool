@@ -11,6 +11,6 @@
         "sourceType": "module"
     },
     "rules": {
-        "no-underscore-dangle":["error",{"enforceInMethodNames": true},{"allow":["_fhirClient"]}]
+        "no-underscore-dangle": "off"
     }
 }
