@@ -11,7 +11,7 @@
   },
   "rules": {
     "no-underscore-dangle": "off",
-    "semi": [2, "always"],
-    "quotes": [2, "single", { "allowTemplateLiterals": true }]
+    "semi": ["Error", "always"],
+    "quotes": ["Error", "single", { "allowTemplateLiterals": true }]
   }
 }
