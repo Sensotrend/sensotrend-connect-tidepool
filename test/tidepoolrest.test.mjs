@@ -1,32 +1,26 @@
-import crypro from 'crypto';
+import crypto from 'crypto';
 import sinon from 'sinon';
-import chaiModule from 'chai';
+import 'chai/register-should.js';
 import express from 'express';
 import jwt from 'jsonwebtoken';
-
-import envModule from '../envTest.mjs';
-
 import request from 'supertest';
 import { v4 as uuidv4 } from 'uuid';
-import _FHIRClient from '../lib/FHIRClient.mjs';
 
-import ProfileModel from './models/tidepooluserprofile.model.mjs';
-import UploaderDataset from './models/tidepooluploaderdataset.model.mjs';
-import TidepoolTokenHandler from './models/tidepooltokenhandler.model.mjs';
-import DatesetTempStorage from './models/dataSetTempStorage.model.mjs';
-import TidepoolUploaderDataset from './models/tidepooluploaderdataset.model.mjs';
+import envModule from '../envTest.mjs';
+import _FHIRClient from '../lib/FHIRClient.mjs';
+import ProfileModel from './models/tidepoolUserProfile.model.mjs';
+import UploaderDataset from './models/tidepoolUploaderDataset.model.mjs';
+import TidepoolTokenHandler from './models/tidepoolTokenHandler.model.mjs';
+import DatasetTempStorage from './models/dataSetTempStorage.model.mjs';
+import TidepoolUploaderDataset from './models/tidepoolUploaderDataset.model.mjs';
 import User from './models/user.model.mjs';
 
 import TidepoolPluginService, { authTools } from '../lib/TidepoolRESTPlugin.mjs';
 import uploadToService from '../lib/uploadToServices.mjs';
 
-const { should } = chaiModule;
-
-should();
-
 const env = envModule();
 const Auth = env.userProvider;
-const siteid = 'foo';
+const siteId = 'foo';
 const pw = 'bar';
 
 const fhirserver = 'http://hapi.fhir.org/baseDstu3';
@@ -36,7 +30,7 @@ const UUID = uuidv4();
 
 function generateToken({ stringBase = 'base64', byteLength = 48 } = {}) {
   return new Promise((resolve, reject) => {
-    crypro.randomBytes(byteLength, (err, buffer) => {
+    crypto.randomBytes(byteLength, (err, buffer) => {
       if (err) {
         reject(err);
       } else {
@@ -72,11 +66,10 @@ describe('Tidepool API testing', function () {
   let tidepoolPluginService;
 
   before(async function () {
-    console.log('Cleaning tidepooltoken handler');
-    await TidepoolTokenHandler.deleteMany();
+    console.log('Cleaning tidepoolToken handler');
     await ProfileModel.deleteMany();
     await TidepoolTokenHandler.deleteMany();
-    await DatesetTempStorage.deleteMany();
+    await DatasetTempStorage.deleteMany();
     await TidepoolUploaderDataset.deleteMany();
     await User.deleteMany();
   });
@@ -121,7 +114,7 @@ describe('Tidepool API testing', function () {
           {
             ProfileModel,
             UploaderDataset,
-            DatesetTempStorage,
+            DatesetTempStorage: DatasetTempStorage,
             TidepoolTokenHandler,
           },
           env
@@ -148,12 +141,12 @@ describe('Tidepool API testing', function () {
 
       after(function () {
         tidepoolServer.close(() => {
-          console.log('Tidepool API testin and close server');
+          console.log('Tidepool API testing and close server');
         });
       });
 
       it('should authenticate over Tidepool API and upload a CGM record', function (done) {
-        Auth.createUser(patient.id, siteid, pw, tokenExpiryTimeInFuture)
+        Auth.createUser(patient.id, siteId, pw, tokenExpiryTimeInFuture)
           .then((data) => {
             const u = data;
             u.email = 'foo@bar.com';
@@ -215,7 +208,7 @@ describe('Tidepool API testing', function () {
           {
             ProfileModel,
             UploaderDataset,
-            DatesetTempStorage,
+            DatesetTempStorage: DatasetTempStorage,
             TidepoolTokenHandler,
           },
           env
@@ -384,7 +377,7 @@ describe('Tidepool API testing', function () {
         {
           ProfileModel,
           UploaderDataset,
-          DatesetTempStorage,
+          DatasetTempStorage: DatasetTempStorage,
           TidepoolTokenHandler,
         },
         env
@@ -428,7 +421,7 @@ describe('Tidepool API testing', function () {
     it('should authenticate over Tidepool API and upload pump data as a dataset', function (done) {
       let u;
 
-      Auth.createUser(patient.id, siteid, pw, tokenExpiryTimeInFuture)
+      Auth.createUser(patient.id, siteId, pw, tokenExpiryTimeInFuture)
         .then((user) => {
           u = user;
           u.email = 'foo@bar.com';

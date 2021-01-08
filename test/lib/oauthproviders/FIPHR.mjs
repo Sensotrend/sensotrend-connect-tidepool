@@ -66,7 +66,7 @@ function FIPHR(env) {
     token_endpoint: OauthTokenURL,
   }); // => Issuer
   env.logger.info(
-    'Set up issuer ' + fiphrIssuer.issuer + ' ' + JSON.stringify(fiphrIssuer.metadata, null, 2)
+    `Set up issuer ${fiphrIssuer.issuer} ${JSON.stringify(fiphrIssuer.metadata, null, 2)}`
   );
 
   const productionOpts = {
@@ -127,12 +127,7 @@ function FIPHR(env) {
       return res.redirect(`${frontend}/?error=${encodeURIComponent('Invalid state')}`);
     }
     env.logger.info(
-      'Auth callback request, code: ' +
-        code +
-        ', state: ' +
-        state +
-        ', session state: ' +
-        storedState
+      `Auth callback request, code: ${code}, state: ${state}, session state: ${storedState}`
     );
 
     try {
@@ -145,12 +140,7 @@ function FIPHR(env) {
       const baseTime = dateHeader ? new Date(dateHeader) : new Date();
       const expiryTime = new Date(baseTime.getTime() + token.expires_in * 1000);
       env.logger.info(
-        'Created token expiry time, ' +
-          baseTime.getTime() +
-          ' + ' +
-          token.expires_in +
-          ': ' +
-          expiryTime
+        `Created token expiry time, ${baseTime.getTime()} ${token.expires_in}: ${expiryTime}`
       );
       const user = await env.userProvider.createOrLoadAndUpdateUser(
         token.sub,
@@ -169,7 +159,7 @@ function FIPHR(env) {
         res.redirect(`${frontend}/registration`);
       }
     } catch (error) {
-      env.logger.error('Access Token Error ' + JSON.stringify(error, null, 2));
+      env.logger.error(`Access Token Error ${JSON.stringify(error, null, 2)}`);
       return res.redirect(`${frontend}/?error=${encodeURIComponent('Authentication failed')}`);
     }
   });
@@ -201,7 +191,7 @@ function FIPHR(env) {
       env.logger.info('Auth key still valid');
       return env.userProvider.decryptAccessToken(user);
     } else {
-      env.logger.info('Refreshing token for user ' + user);
+      env.logger.info(`Refreshing token for user ${user}`);
       const tokenSet = await client.refresh(env.userProvider.decryptRefreshToken(user));
       env.logger.info('Got new token for user ' + user + ': ' + tokenSet.access_token);
       env.userProvider.updateTokensForUser(

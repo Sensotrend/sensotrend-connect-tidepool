@@ -1,4 +1,4 @@
-import DeviceLatestSeenDate from '../models/devicelatestseendate.model.mjs';
+import DeviceLatestSeenDate from '../models/deviceLatestSeenDate.model.mjs';
 
 function RecordSkipService(env) {
   const logger = env.logger;
@@ -21,9 +21,7 @@ function RecordSkipService(env) {
         return false;
       }
     } catch (error) {
-      logger.error(
-        'Problem loading device last seen dates from user ' + userId
-      );
+      logger.error('Problem loading device last seen dates from user ' + userId);
       return false;
     }
   };
@@ -54,9 +52,7 @@ function RecordSkipService(env) {
           if (element.device_id == newDevice) {
             found = true;
             if (dates[newDevice] > element.newest_recorded_date) {
-              logger.debug(
-                'Device found, updating value to ' + dates[newDevice]
-              );
+              logger.debug('Device found, updating value to ' + dates[newDevice]);
               element.newest_recorded_date = dates[newDevice];
             } else {
               logger.debug('Device found, skip date was already newer');
@@ -77,10 +73,7 @@ function RecordSkipService(env) {
       await currentDates.save();
       logger.info('Saved latest device dates for user ' + userId);
     } catch (error) {
-      logger.error(
-        'Problem saving device last seen dates from user ' + userId,
-        error
-      );
+      logger.error('Problem saving device last seen dates from user ' + userId, error);
     }
   };
 

@@ -1,11 +1,7 @@
-import chaiModule from 'chai';
+import 'chai/register-should.js';
 import { v4 as uuidv4 } from 'uuid';
 import _FHIRClient from '../lib/FHIRClient.mjs';
 import envModule from '../envTest.mjs';
-
-const { should } = chaiModule;
-
-should();
 
 const env = envModule();
 

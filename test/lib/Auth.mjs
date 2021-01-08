@@ -66,27 +66,6 @@ function Auth(encryption_key, env) {
     }
   };
 
-  Auth.findUserBySiteSecret = async function (siteSecret) {
-    let user = await User.findOne({
-      $or: [
-        {
-          site_secret: siteSecret,
-        },
-        {
-          site_secret_SHA1: siteSecret,
-        },
-      ],
-    });
-
-    if (user) {
-      logger.debug('Loaded user: ' + user.site_id);
-      return user;
-    } else {
-      logger.info('Not site found for secret ' + siteSecret);
-      return false;
-    }
-  };
-
   Auth.findUserByEmailAndSecret = async function (email, siteSecret) {
     let user = await User.findOne({
       email: email,
