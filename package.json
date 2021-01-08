@@ -1,10 +1,11 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.0.94",
+  "version": "1.0.95",
   "description": "Sensotrend connect tidepool",
   "main": "connectTidepool.mjs",
   "scripts": {
-    "test": "env-cmd -f ./test.env mocha --exit --timeout 5s",
+    "manual_test": "env-cmd -f ./test.env mocha  manual_test.mjs  --exit --timeout 5s",
+    "test": "env-cmd -f ./test.env mocha automatic_test.mjs --exit --timeout 5s",
     "testNativeEsm": " env-cmd -f ./my.env node connectTidepool.mjs"
   },
   "type": "module",
