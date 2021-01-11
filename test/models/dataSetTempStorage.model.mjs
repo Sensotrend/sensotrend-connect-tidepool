@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-const DatasetTempStorageSchema = new Schema({
+const DataSetTempStorageSchema = new Schema({
   access_token: { type: String, required: true },
   refresh_token: { type: String, required: true },
   token_expiry_date: { type: Date, required: true },
@@ -11,7 +11,7 @@ const DatasetTempStorageSchema = new Schema({
   deviceInformation: { type: Buffer },
 });
 
-DatasetTempStorageSchema.pre('save', function (next) {
+DataSetTempStorageSchema.pre('save', function (next) {
   if (!this.create_date) {
     this.create_date = new Date();
   }
@@ -20,4 +20,4 @@ DatasetTempStorageSchema.pre('save', function (next) {
 });
 
 // Export the model
-export default mongoose.model('DatasetTempStorage', DatasetTempStorageSchema);
+export default mongoose.model('DataSetTempStorage', DataSetTempStorageSchema);
