@@ -96,7 +96,7 @@ describe('Tidepool API testing', function () {
       name: 'Testi',
       accessToken: 'fsdfsd',
       refreshToken: 'sfafasfa',
-      email: 'foo@bar.com',
+      email: 'foo@example.com',
       expires: '2040-12-16T07:32:01.041+00:00',
       userid: 3,
       user: UUID,
@@ -149,7 +149,7 @@ describe('Tidepool API testing', function () {
         Auth.createUser(patient.id, siteId, pw, tokenExpiryTimeInFuture)
           .then((data) => {
             const u = data;
-            u.email = 'foo@bar.com';
+            u.email = 'foo@example.com';
 
             u.save().catch((e) => {
               console.log(`Error is ${e}`);
@@ -296,7 +296,7 @@ describe('Tidepool API testing', function () {
             access_token: 'bad61fc5cac60b44c7fe3acf',
             refresh_token: 'sfafasfa',
             token_expiry_date: '2021-12-16T07:32:01.041+00:00',
-            email: 'foo@bar.com',
+            email: 'foo@example.com',
             user_id: 'daf864c0-3b4f-4338-8f59-d71401c7a261',
             userId: '8341f68c-a023-4253-ae61-68a2a69612e7',
             create_date: '2020-12-20T07:40:57.088+00:00',
@@ -363,7 +363,7 @@ describe('Tidepool API testing', function () {
       name: 'Testi',
       accessToken: 'fsdfsdffdde3444',
       refreshToken: 'sfafasfa',
-      email: 'foo@bar.com',
+      email: 'foo@example.com',
       expires: '2040-12-16T07:32:01.041+00:00',
       userid: 3,
       user: UUID,
@@ -424,7 +424,7 @@ describe('Tidepool API testing', function () {
       Auth.createUser(patient.id, siteId, pw, tokenExpiryTimeInFuture)
         .then((user) => {
           u = user;
-          u.email = 'foo@bar.com';
+          u.email = 'foo@example.com';
 
           u.save().catch((e) => {
             console.log(`Error is ${e}`);
