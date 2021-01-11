@@ -89,7 +89,7 @@ describe('Tidepool API testing', function () {
     }
   });
 
-  describe('GSM record', () => {
+  describe('CGM record', () => {
     let results;
     let body;
     const result = {
