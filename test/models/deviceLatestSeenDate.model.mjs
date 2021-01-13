@@ -12,4 +12,4 @@ const DeviceDateSchema = new Schema({
 });
 
 // Export the model
-export default mongoose.model('DeviceNewestSeenDate', DeviceDateSchema);
+export default mongoose.model('DeviceLatestSeenDate', DeviceDateSchema);
