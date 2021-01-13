@@ -1,40 +1,47 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.0.91",
+  "version": "1.0.98",
   "description": "Sensotrend connect tidepool",
   "main": "connectTidepool.mjs",
   "scripts": {
-    "test": "mocha",
-    "testNativeEsm": " env-cmd -f ./my.env node --experimental-modules connectTidepool.mjs"
+    "manual_test": "env-cmd -f ./test.env mocha  ./test/manual/*.test.mjs  --exit --timeout 5s",
+    "test": "env-cmd -f ./test.env mocha ./test/automatic/*.test.mjs --exit --timeout 5s",
+    "testNativeEsm": " env-cmd -f ./my.env node connectTidepool.mjs"
   },
   "type": "module",
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@awaitjs/express": "^0.6.1",
     "axios": "^0.21.0",
-    "basic-auth": "^2.0.1",
     "body-parser": "^1.19.0",
     "bson": "^4.2.2",
     "connect-mongo": "^3.2.0",
-    "cors": "^2.8.5",
     "env-cmd": "^10.1.0",
-    "express": "^4.17.1",
-    "express-session": "^1.17.1",
     "fhir-kit-client": "git://github.com/mrinnetmaki/fhir-kit-client.git#error-handling",
-    "jose": "^3.3.1",
+    "jose": "^3.5.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
-    "nanoid": "^3.1.20",
     "promise-parallel-throttle": "^3.3.0",
-    "sensotrend-converter": "git://github.com/Sensotrend/sensotrend-converter.git#beta",
+    "sensotrend-converter": "git://github.com/Sensotrend/sensotrend-converter.git#betaWithTypeModulePullrequestToBeta",
     "uuid": "^8.3.2",
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "@awaitjs/express": "^0.6.3",
+    "basic-auth": "^2.0.1",
     "chai": "^4.2.0",
+    "cors": "^2.8.5",
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mariadb": "^2.5.2",
     "mocha": "^8.2.1",
+    "moment": "^2.29.1",
     "mongoose": "^5.11.7",
+    "nanoid": "^3.1.20",
+    "openid-client": "^4.2.2",
+    "sinon": "^9.2.2",
     "supertest": "^6.0.1"
   }
 }
