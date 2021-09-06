@@ -1,6 +1,6 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.0.118",
+  "version": "1.0.119",
   "description": "Sensotrend connect tidepool",
   "main": "connectTidepool.mjs",
   "scripts": {
@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.21.3",
     "body-parser": "^1.19.0",
     "bson": "^4.5.1",
     "connect-mongo": "^3.2.0",
