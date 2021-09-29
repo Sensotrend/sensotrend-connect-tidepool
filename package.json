@@ -1,6 +1,6 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.0.126",
+  "version": "1.0.127",
   "description": "Sensotrend connect tidepool",
   "main": "connectTidepool.mjs",
   "scripts": {
@@ -22,7 +22,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "promise-parallel-throttle": "^3.3.0",
-    "sensotrend-converter": "git://github.com/Sensotrend/sensotrend-converter.git#betaWithTypeModulePullrequestToBeta",
+    "sensotrend-converter": "git://github.com/Sensotrend/sensotrend-converter.git#beta",
     "uuid": "^8.3.2",
     "winston": "^3.3.3"
   },
