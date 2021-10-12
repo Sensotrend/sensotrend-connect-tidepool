@@ -1,6 +1,6 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.1.0-poolprax",
+  "version": "1.1.1-poolprax",
   "description": "Sensotrend connect tidepool",
   "main": "connectTidepool.mjs",
   "scripts": {
@@ -16,15 +16,15 @@
   "dependencies": {
     "axios": "^0.22.0",
     "body-parser": "^1.19.0",
-    "bson": "^4.5.2",
+    "bson": "^4.5.3",
     "connect-mongo": "^3.2.0",
     "env-cmd": "^10.1.0",
     "fhir-kit-client": "git://github.com/mrinnetmaki/fhir-kit-client.git#error-handling",
-    "jose": "^3.17.0",
+    "jose": "^3.20.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "promise-parallel-throttle": "^3.3.0",
-    "sensotrend-converter": "git://github.com/Sensotrend/sensotrend-converter.git#beta",
+    "sensotrend-converter": "git://github.com/Sensotrend/sensotrend-converter.git",
     "uuid": "^8.3.2",
     "winston": "^3.3.3"
   },
@@ -40,8 +40,8 @@
     "mariadb": "^2.5.4",
     "mocha": "^8.4.0",
     "moment": "^2.29.1",
-    "mongoose": "^5.13.9",
-    "nanoid": "^3.1.25",
+    "mongoose": "^5.13.10",
+    "nanoid": "^3.1.29",
     "openid-client": "^4.9.0",
     "sinon": "^9.2.4",
     "supertest": "^6.1.6"

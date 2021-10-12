@@ -1,3 +1,3 @@
 export default function getVersion() {
-  return '1.1.0-poolprax';
+  return '1.1.1-poolprax';
 }
