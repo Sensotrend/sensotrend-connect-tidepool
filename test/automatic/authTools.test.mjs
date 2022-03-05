@@ -1,5 +1,4 @@
 import sinon from 'sinon';
-//import axios from 'axios';
 import 'chai/register-should.js';
 import { v4 as uuidv4 } from 'uuid';
 
