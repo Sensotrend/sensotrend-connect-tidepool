@@ -1,9 +1,11 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.0.115-poolprax",
+  "version": "1.2.4-dd",
   "description": "Sensotrend connect tidepool",
   "main": "connectTidepool.mjs",
   "scripts": {
+    "lint": "./node_modules/eslint/bin/eslint.js *.mjs **/*.mjs lib/converter/*.mjs",
+    "preinstall": "node ./version/version_update.mjs",
     "manual_test": "env-cmd -f ./test.env mocha  ./test/manual/*.test.mjs  --exit --timeout 5s",
     "test": "env-cmd -f ./test.env mocha ./test/automatic/*.test.mjs --exit --timeout 5s",
     "testNativeEsm": " env-cmd -f ./my.env node connectTidepool.mjs"
@@ -12,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.4",
     "body-parser": "^1.19.0",
     "bson": "^4.4.0",
     "connect-mongo": "^3.2.0",
@@ -39,7 +41,7 @@
     "mocha": "^8.4.0",
     "moment": "^2.29.1",
     "mongoose": "^5.12.14",
-    "nanoid": "^3.1.23",
+    "nanoid": "^3.3.1",
     "openid-client": "^4.7.4",
     "sinon": "^9.2.4",
     "supertest": "^6.1.3"
