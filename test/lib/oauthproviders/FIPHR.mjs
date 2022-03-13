@@ -123,7 +123,7 @@ function FIPHR(env) {
     const { code, state } = req.query;
     const storedState = req.session.state;
     if (state !== storedState) {
-      env.logger.warning('Invalid state! ' + { request: state, session: storedState });
+      env.logger.error('Invalid state! ' + { request: state, session: storedState });
       return res.redirect(`${frontend}/?error=${encodeURIComponent('Invalid state')}`);
     }
     env.logger.info(
