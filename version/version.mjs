@@ -1,3 +1,3 @@
 export default function getVersion() {
-  return '1.2.19-dd';
+  return '1.2.20-dd';
 }
