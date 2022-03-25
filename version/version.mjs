@@ -1,3 +1,3 @@
 export default function getVersion() {
-  return '1.2.14';
+  return '1.2.15';
 }
