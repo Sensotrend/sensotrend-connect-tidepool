@@ -1,6 +1,6 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.2.17",
+  "version": "1.2.19",
   "description": "Sensotrend connect tidepool",
   "main": "connectTidepool.mjs",
   "scripts": {
@@ -39,7 +39,7 @@
     "express-session": "^1.17.2",
     "mariadb": "^2.5.4",
     "mocha": "^8.4.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.3",
     "mongoose": "^5.13.9",
     "nanoid": "^3.1.25",
     "openid-client": "^4.9.0",
