@@ -1,6 +1,6 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.2.19",
+  "version": "1.2.20",
   "description": "Sensotrend connect tidepool",
   "main": "connectTidepool.mjs",
   "scripts": {
@@ -38,7 +38,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "mariadb": "^2.5.4",
-    "mocha": "^8.4.0",
+    "mocha": "^10.0.0",
     "moment": "^2.29.3",
     "mongoose": "^5.13.9",
     "nanoid": "^3.1.25",
