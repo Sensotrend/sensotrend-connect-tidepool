@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   mongo:
-    image: 'mongo:4.2.11-bionic'
+    image: 'mongo:4.4.5-bionic'
     restart: always
     environment:
       - MONGO_INITDB_DATABASE=testDb
