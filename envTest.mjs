@@ -5,7 +5,6 @@ import Auth from './test/lib/Auth.mjs';
 import Mongo from './mongo.mjs';
 
 import DeviceLastSeenService from './test/lib/RecordSkipManager.mjs';
-import { DefaultConversionService } from 'sensotrend-converter';
 
 const { createLogger, format, transports } = winstonModule;
 
@@ -70,8 +69,6 @@ function Environment() {
     envTest.https_certificate = fs.readFileSync(authCert, 'utf8');
     envTest.logger.info('Using certificate and private key for HTTPS');
   }
-
-  envTest.dataFormatConverter = DefaultConversionService(envTest.logger);
 
   return envTest;
 }
