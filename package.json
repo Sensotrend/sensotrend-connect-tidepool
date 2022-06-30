@@ -1,6 +1,6 @@
 {
   "name": "sensotrend-connect-tidepool",
-  "version": "1.2.25-dd",
+  "version": "1.2.26-dd",
   "description": "Sensotrend connect tidepool",
   "main": "connectTidepool.mjs",
   "scripts": {
